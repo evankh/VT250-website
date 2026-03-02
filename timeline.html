@@ -25,6 +25,12 @@
 			font-family: 'PT Sans';
 			margin: 0;
 		}
+		form {
+			border: 1px solid rgba(128,128,128,0.5);
+		}
+		label {
+			font-family: 'PT Sans';
+		}
 		a {
 			text-decoration: none;
 		}
@@ -98,6 +104,24 @@
 			}
 		}
 	</style>
+	<script>
+		function sendEmail() {
+			var link = document.getElementById('submit');
+			var name = document.getElementById("who").value;
+			var what = document.getElementById("what").value;
+			var why = document.getElementById("why").value;
+			var which = document.getElementById("America");
+			if (which.checked) {
+				which = "America";
+			} else {
+				which = "Vermont";
+			}
+			var message = "Name: " + name + "%0A" + which + "%0AWhat: " + what + "%0AWhy: " + why;
+			var email = "waterburyvt250@outlook.com";
+			var href = "mailto:" + email + "?subject=Waterbury VT250 Timeline submission&body=" + message;
+			link.setAttribute("href", href);
+		}
+	</script>
 </head>
 <body style="margin:0;">
 	<div id="sidebar" style="background-color:#00154B;">
@@ -119,6 +143,20 @@
 		<h1>What's been going on these 250 years?</h1>
 		<p>History isn't just a list of things that happened. It's also a narrative we share and tell each other, and which parts we emphasize or forget can tell us a lot about how we see ourselves. We want to know what events and eras stand out the most in our popular vision of America's 250 year history.
 		<p>The clusters - and the gaps - may provide inspiration for future celebrations and educational opportunities.
+		<form action="mailto:waterburyvt250@outlook.com" method="get">
+			<label for="what">What historical event or era do you think is important or interesting?</label><br>
+			<input type="text" id="what" name="what" required size="60" placeholder="Everyone should know about..."><br>
+			<label for="why">Tell us why!</label><br>
+			<textarea id="why" name="why" required cols="60" rows="10" placeholder="This matters because..."></textarea><br>
+			<label for="who">Name (optional)</label><br>
+			<input type="text" id="who" name="who"><br>
+			<input type="radio" value="America" id="America" name="which" value="America" required>
+			<label for="America">America</label>
+			<input type="radio" value="Vermont" id="Vermont" name="which" value="Vermont">
+			<label for="Vermont">Vermont</label><br>
+			<a onMouseOver="sendEmail()" id="submit" href="mailto:waterburyvt250@outlook.com">Submit!</a>
+			<p><i>Submissions will be manually checked for appropriateness and accuracy.</i>
+		</form>
 	</div>
 </body>
 </html>
